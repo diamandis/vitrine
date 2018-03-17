@@ -1,9 +1,21 @@
 const X = (callback) => {
     let referenceContainer = document.querySelector("#reference");
-    let productDetails = createItem(callback.data.reference);
-    productDetails.forEach(elem => referenceContainer.appendChild(elem));
+    let referenceDiv = document.createElement("div");    
+    referenceContainer.appendChild(referenceDiv);
 
-    console.log(callback.data.widget.size);
+    let recommendationsContainer = document.querySelector("#recommendations");
+    
+    let productDetails = createItem(callback.data.reference.item);
+    productDetails.forEach(elem => referenceDiv.appendChild(elem));
+
+    let recommendations = callback.data.recommendation;
+    recommendations.forEach(item => { 
+        let recommendationDiv = document.createElement("div");    
+        recommendationsContainer.appendChild(recommendationDiv);
+        let product = createItem(item);
+        product.forEach(elem => recommendationDiv.appendChild(elem));
+    });
+    
 };
 
 const createItem = (data) => {
@@ -13,15 +25,19 @@ const createItem = (data) => {
     let oldPrice = document.createElement("p");
     let paymentConditions = document.createElement("p");
     
-    productImg.setAttribute("src",data.item.imageName);
-    productName.textContent = data.item.name;
-    price.textContent = `Por: R$${data.item.price}`;
-    if(data.item.oldPrice!=="null") {
-        oldPrice.textContent = `De: R$${data.item.oldPrice}`;
+    productImg.setAttribute("src",data.imageName);
+    productName.textContent = data.name;
+    productName.setAttribute("class","name");
+    price.textContent = `Por: ${data.price}`;
+    if(data.oldPrice!==null) {
+        oldPrice.textContent = `De: ${data.oldPrice}`;
     } else {    
-        oldPrice.setAttribute("disabled","");
+        oldPrice.setAttribute("hidden","");
     }
-    paymentConditions.innerText = data.item.productInfo.paymentConditions;
-
+    paymentConditions.innerText = data.productInfo.paymentConditions;
+    price.setAttribute("class","price");
+    oldPrice.setAttribute("class","price");
+    paymentConditions.setAttribute("class","price");
+        
     return [productImg,productName,oldPrice,price,paymentConditions];
 }
