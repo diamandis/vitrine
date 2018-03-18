@@ -36,7 +36,7 @@ const createItem = (selector,data) => {
 
 const setProductDetails = (data) => 
                 `<img src="${data.imageName}">
-                <p class="name">${data.name}</p>
+                <a href="${data.detailUrl}"><p class="name">${data.name}</p></a>
                 <p ${isOldPriceAvailable(data.oldPrice)}>De: ${data.oldPrice}</p>
                 <p class="price">Por: <span>${data.price}</span></p>
                 <p class="price">${data.productInfo.paymentConditions}</p>`;
