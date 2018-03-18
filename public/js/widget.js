@@ -1,43 +1,37 @@
+/* 
+    Parses server callback and generates widget
+*/    
 const X = (callback) => {
-    let referenceContainer = document.querySelector("#reference");
-    let referenceDiv = document.createElement("div");    
-    referenceContainer.appendChild(referenceDiv);
-
-    let recommendationsContainer = document.querySelector("#recommendations");
+    createItem("#reference",callback.data.reference.item);
     
-    let productDetails = createItem(callback.data.reference.item);
-    productDetails.forEach(elem => referenceDiv.appendChild(elem));
-
-    let recommendations = callback.data.recommendation;
-    recommendations.forEach(item => { 
-        let recommendationDiv = document.createElement("div");    
-        recommendationsContainer.appendChild(recommendationDiv);
-        let product = createItem(item);
-        product.forEach(elem => recommendationDiv.appendChild(elem));
-    });
+    let recommendedProducts = callback.data.recommendation;
+    recommendedProducts.forEach((item)=>createItem("#recommendations",item));
     
 };
 
-const createItem = (data) => {
-    let productImg = document.createElement("img");
-    let productName = document.createElement("p");
-    let price = document.createElement("p");
-    let oldPrice = document.createElement("p");
-    let paymentConditions = document.createElement("p");
-    
-    productImg.setAttribute("src",data.imageName);
-    productName.textContent = data.name;
-    productName.setAttribute("class","name");
-    price.textContent = `Por: ${data.price}`;
-    if(data.oldPrice!==null) {
-        oldPrice.textContent = `De: ${data.oldPrice}`;
-    } else {    
-        oldPrice.setAttribute("hidden","");
+/* 
+   Append <div> with product details to matched element
+   @param selector: CSS selector string matching parent element
+   @param data: data to populate new <div>
+*/
+const createItem = (selector,data) => {
+    let container = document.querySelector(selector);
+    let newItem = document.createElement("div"); 
+    newItem.innerHTML = setProductDetails(data);   
+    container.appendChild(newItem);
+
+};
+
+const setProductDetails = (data) => 
+                `<img src="${data.imageName}">
+                <p>${data.name}</p>
+                <p ${isOldPriceAvailable(data.oldPrice)}>De: ${data.oldPrice}</p>
+                <p>Por: <span>${data.price}</span></p>
+                <p>${data.productInfo.paymentConditions}</p>`;
+
+
+const isOldPriceAvailable = (price) => {
+    if(price === null) {
+        return "hidden";
     }
-    paymentConditions.innerText = data.productInfo.paymentConditions;
-    price.setAttribute("class","price");
-    oldPrice.setAttribute("class","price");
-    paymentConditions.setAttribute("class","price");
-        
-    return [productImg,productName,oldPrice,price,paymentConditions];
 }
