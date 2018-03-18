@@ -3,12 +3,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/widget.css">
     <title>Chaordic OnSite</title>
-<body class="container">    
-    <section id="reference" class="container__ref">        
-        <h1>Você visitou:</h1>        
+<body class="container">       
+    <section class="container__ref">            
+        <header>
+            <h1>Você visitou:</h1>        
+        </header>
+        <div id="reference"></div>
     </section>
-    <section id="recommendations" class="container__rec">
-        <h1>e talvez se interesse por:</h1>        
+    <section class="container__rec">
+        <header>
+            <h1>e talvez se interesse por:</h1>        
+        </header>               
+        <button id="btn-left" class="btn-left">⯇</button>
+        <div id="recommendations"></div>
+        <button id="btn-right" class="btn-right">⯈</button>
     </section>
     <script src="/js/widget.js"></script>
     <script src="http://roberval.chaordicsystems.com/challenge/challenge.json?callback=X"></script>

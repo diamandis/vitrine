@@ -1,35 +1,60 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;    
-    height: 350px;
+    font-family: Arial, Helvetica, sans-serif;        
 }
 
 h1 {
     font-size:24px;
-    color:blue;    
+    color:#006699;  
 }
+
+header {
+    background: linear-gradient(#eff7fe,#e5f1fb);
+} 
 
 p {
     font-size: 12px;    
 }
+
+span {
+    font-size: 16px;
+    font-weight: bold;
+}
 .container {
-    display:flex;
+   margin: 8px;
 }
 
 .container__ref {
-    float:left;
-    
+    float: left; 
+    box-sizing: border-box;
+  
 }
 
 .container__rec {
-    flex: 3;
+    margin-left:200px;   
+    overflow:hidden;     
+}
+
+#recommendations {
     display: flex;
-    border-left: 1px solid #eee;
-    overflow:auto;
 }
 
 div {
     width: 200px;
-    padding: 5px;
+    padding: 8px;
+    box-sizing: border-box;
+    
+}
+
+.btn-left {
+    font-size: 32px;    
+    border: none;    
+    background: transparent;
+}
+
+.btn-right {
+    font-size: 32px;
+    border: none;
+    background: transparent;
 }
 
 .name {
@@ -41,5 +66,5 @@ div {
 }
 
 .price {
-    color:red;
+    color:#cf0000;
 }

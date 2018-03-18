@@ -26,8 +26,8 @@ const setProductDetails = (data) =>
                 `<img src="${data.imageName}">
                 <p>${data.name}</p>
                 <p ${isOldPriceAvailable(data.oldPrice)}>De: ${data.oldPrice}</p>
-                <p>Por: <span>${data.price}</span></p>
-                <p>${data.productInfo.paymentConditions}</p>`;
+                <p class="price">Por: <span>${data.price}</span></p>
+                <p class="price">${data.productInfo.paymentConditions}</p>`;
 
 
 const isOldPriceAvailable = (price) => {
