@@ -69,9 +69,6 @@ span {
     flex-basis: 200px;
 }
 
-.product:disabled {
-    display: none;
-}
 
 .btn-left {
     font-size: 32px;    

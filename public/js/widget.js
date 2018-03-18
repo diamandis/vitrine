@@ -1,24 +1,3 @@
-/*
-    Control variables. Display first 5 products
-*/
-var first = 0,
-    last = 4;    
-
-const next = () => {
-    let container = document.querySelector("#recommendations");
-    let products = document.querySelectorAll(".product");
-    //let product = document.querySelectorAll(`.product:nth-child(${first})`);    
-    product[first].setAttribute("disabled","");
-    first++;    
-    container.appendChild
-};
-
-const createButtons = () => {
-    let btnLeft = document.getElementById("btn-left");
-    document.getElementById("btn-right").onclick = next();
-
-}
-
 /* 
     Parses server callback and generates widget
 */    
@@ -27,7 +6,19 @@ const X = (callback) => {
     
     let recommendedProducts = callback.data.recommendation;
     recommendedProducts.forEach((item)=> createItem("#recommendations",item));
-    
+
+    let btnRight = document.getElementById("btn-right").addEventListener("click",next);
+    let btnLeft = document.getElementById("btn-left").addEventListener("click",prev);
+};
+
+const next = () => {
+    let products = document.getElementById("recommendations").childNodes;
+    products[0].parentNode.appendChild(products[0]);        
+};
+
+const prev = () => {
+    let products = document.getElementById("recommendations").childNodes;
+    products[9].parentNode.insertBefore(products[9],products[0]);        
 };
 
 /* 
